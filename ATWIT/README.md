@@ -39,7 +39,7 @@ Edit `.env` with your Africa's Talking credentials:
 AT_USERNAME=your-username
 AT_API_KEY=your-api-key
 USSD_CODE=*384*3574#
-SMS_SHORTCODE=22898
+SMS_SHORTCODE=30745
 PORT=3000
 NODE_ENV=development
 ```
@@ -179,7 +179,7 @@ sessionId=xxx&serviceCode=*384*3574#&phoneNumber=+254712345678&text=1*2
 POST /sms
 Content-Type: application/x-www-form-urlencoded
 
-from=+254712345678&text=ROUTE KASARANI CBD&to=22898&id=xxx&date=xxx
+from=+254712345678&text=ROUTE KASARANI CBD&to=30745&id=xxx&date=xxx
 ```
 
 ### Management Endpoints
@@ -343,7 +343,7 @@ curl -X POST http://localhost:3000/ussd \
 **Test SMS locally:**
 ```bash
 curl -X POST http://localhost:3000/sms \
-  -d "from=+254712345678&text=ROUTE KASARANI CBD&to=22898&id=123&date=2024-01-01"
+  -d "from=+254712345678&text=ROUTE KASARANI CBD&to=30745&id=123&date=2024-01-01"
 ```
 
 **Test alert:**

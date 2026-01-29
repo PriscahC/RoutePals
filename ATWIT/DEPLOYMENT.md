@@ -35,7 +35,7 @@ heroku create nairobi-commuter-info
 heroku config:set AT_USERNAME=your-username
 heroku config:set AT_API_KEY=your-api-key
 heroku config:set USSD_CODE="*384*3574#"
-heroku config:set SMS_SHORTCODE=22898
+heroku config:set SMS_SHORTCODE=30745
 heroku config:set NODE_ENV=production
 ```
 
@@ -177,7 +177,7 @@ Add:
 AT_USERNAME=your-username
 AT_API_KEY=your-api-key
 USSD_CODE=*384*3574#
-SMS_SHORTCODE=22898
+SMS_SHORTCODE=30745
 PORT=3000
 NODE_ENV=production
 ```
@@ -333,7 +333,7 @@ curl -X POST https://your-domain.com/ussd \
 **Test SMS:**
 ```bash
 curl -X POST https://your-domain.com/sms \
-  -d "from=+254712345678&text=ROUTE KASARANI CBD&to=22898&id=test123&date=2024-01-01"
+  -d "from=+254712345678&text=ROUTE KASARANI CBD&to=30745&id=test123&date=2024-01-01"
 ```
 
 ---
@@ -345,7 +345,7 @@ curl -X POST https://your-domain.com/sms \
 | `AT_USERNAME` | Africa's Talking username | `sandbox` or `your-username` |
 | `AT_API_KEY` | Africa's Talking API key | `abc123...` |
 | `USSD_CODE` | Your USSD service code | `*384*3574#` |
-| `SMS_SHORTCODE` | Your SMS shortcode | `22898` |
+| `SMS_SHORTCODE` | Your SMS shortcode | `30745` |
 | `PORT` | Server port | `3000` |
 | `NODE_ENV` | Environment | `production` or `development` |
 

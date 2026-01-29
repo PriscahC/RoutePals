@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const { routes, reports, reportIdCounter, trafficUpdates, stats } = require('../data/routesData');
+const { handleSMS } = require('../handlers/smsHandler');
 
 // Get all routes
 router.get('/routes', (req, res) => {
@@ -220,5 +221,8 @@ router.post('/fare-estimate', (req, res) => {
     });
   }
 });
+
+// SMS webhook endpoint
+router.post('/sms', handleSMS);
 
 module.exports = router;

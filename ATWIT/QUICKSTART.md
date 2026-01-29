@@ -40,7 +40,7 @@ Update these values:
 AT_USERNAME=sandbox
 AT_API_KEY=your-api-key-here
 USSD_CODE=*384*3574#
-SMS_SHORTCODE=22898
+SMS_SHORTCODE=30745
 PORT=3000
 ```
 
@@ -101,7 +101,7 @@ ngrok http 3000
 
 2. Test in SMS Simulator:
    - From Number: Your phone number
-   - To Number: Your shortcode (22898)
+   - To Number: Your shortcode (30745)
    - Message: `ROUTE KASARANI CBD`
    - Click Send
 
@@ -116,7 +116,7 @@ curl -X POST http://localhost:3000/ussd \
 ### Test SMS (without simulator):
 ```bash
 curl -X POST http://localhost:3000/sms \
-  -d "from=+254712345678&text=ROUTE KASARANI CBD&to=22898"
+  -d "from=+254712345678&text=ROUTE KASARANI CBD&to=30745"
 ```
 
 ### Test via Dashboard:

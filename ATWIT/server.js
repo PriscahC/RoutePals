@@ -1,8 +1,9 @@
-// server.js - Main server file for Nairobi Commuter Info USSD System
+// server.js - Main server file for Nairobi Commuter Info USSD/SMS System
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { handleUSSD } = require('./handlers/ussdHandler');
+const { handleSMS } = require('./handlers/smsHandler');
 const apiRoutes = require('./routes/api');
 
 const app = express();
@@ -30,13 +31,14 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.json({ 
     status: 'running', 
-    service: 'Nairobi Commuter Info USSD',
+    service: 'Nairobi Commuter Info USSD/SMS',
     version: '1.0.0',
     timestamp: new Date().toISOString(),
     endpoints: {
       dashboard: '/dashboard.html',
       api: '/api/routes',
       ussd: '/ussd',
+      sms: '/sms',
       test: '/test-ussd'
     }
   });
@@ -48,6 +50,14 @@ app.post('/ussd', (req, res) => {
   console.log('Body:', req.body);
   console.log('Headers:', req.headers);
   handleUSSD(req, res);
+});
+
+// SMS endpoint - Africa's Talking SMS callback
+app.post('/sms', (req, res) => {
+  console.log('\n=== SMS REQUEST RECEIVED ===');
+  console.log('Body:', req.body);
+  console.log('Headers:', req.headers);
+  handleSMS(req, res);
 });
 
 // Test endpoint to simulate USSD interaction
@@ -70,7 +80,7 @@ app.use((req, res, next) => {
     error: 'Route not found',
     path: req.path,
     method: req.method,
-    availableEndpoints: ['/ussd', '/api/routes', '/dashboard.html']
+    availableEndpoints: ['/ussd', '/sms', '/api/routes', '/dashboard.html']
   });
 });
 
@@ -86,17 +96,18 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`\n${'='.repeat(60)}`);
-  console.log(`🚍 Nairobi Commuter Info USSD Server`);
+  console.log(`🚍 Nairobi Commuter Info USSD/SMS Server`);
   console.log(`${'='.repeat(60)}`);
   console.log(`📱 Server running on port ${PORT}`);
   console.log(`⏰ Started at: ${new Date().toISOString()}`);
   console.log(`\n📊 Dashboard: http://localhost:${PORT}/dashboard.html`);
   console.log(`🔌 API: http://localhost:${PORT}/api/routes`);
   console.log(`📞 USSD endpoint: http://localhost:${PORT}/ussd`);
+  console.log(`💬 SMS endpoint: http://localhost:${PORT}/sms`);
   console.log(`🧪 Test endpoint: http://localhost:${PORT}/test-ussd`);
   console.log(`${'='.repeat(60)}\n`);
   console.log('✅ Server is ready to receive requests!');
-  console.log('Waiting for USSD requests...\n');
+  console.log('Waiting for USSD/SMS requests...\n');
 });
 
 module.exports = app;
